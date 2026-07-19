@@ -9,6 +9,7 @@
 단일 루프 방식의 병목 현상을 해결하기 위해 조종기(Master)와 구동부(Slave)를 분리한 Dual MCU 아키텍처를 설계하였으며, FreeRTOS의 선점형 스케줄링을 도입하여 완벽한 실시간 동시성을 확보했습니다.
 
 **주요 하드웨어:** STM32F411RE (x2), HC-SR04 (x3), HC-06 Bluetooth, L298N Motor Driver
+<br/>
 **핵심 기술:** FreeRTOS, Master-Slave Architecture, ADC-DMA, UART Interrupt, Non-Blocking Timer Control
 
 <br/>
