@@ -24,3 +24,17 @@
 센서 노이즈와 인터럽트 충돌을 물리적으로 차단하기 위해 제어부와 구동부를 분리했습니다.
 * **Master (조종기):** ADC-DMA를 이용한 조이스틱 다채널 데이터 수집 및 노이즈 필터링(Deadzone). UART를 통해 상태 변경 시에만 명령 송신.
 * **Slave (RC카):** 3축 초음파 센서로 주변 공간을 인지하며, 조종기 명령 수신 및 모터/인디케이터(LED, Buzzer) 제어.
+
+<br/>
+
+📦 stm32-freertos-autonomous-car
+ ┣ 📂 Master_Controller     # 조종기 (ADC-DMA, UART Tx)
+ ┃ ┣ 📜 main.c              # 조이스틱 데드존 연산 및 필터링 로직
+ ┃ ┗ 📜 ...
+ ┗ 📂 Slave_RC_Car          # RC카 구동부 (FreeRTOS, UART Rx)
+   ┣ 📂 Core/Src
+   ┃ ┣ 📜 freertos.c        # SensorTask, DriveTask 및 Active_Delay 구현
+   ┃ ┣ 📜 buzzer.c          # 부저 제어 및 Timer 업데이트 (Non-Blocking)
+   ┃ ┣ 📜 delay.c           # 하드웨어 타이머 기반 us 딜레이 (초음파 트리거)
+   ┃ ┗ 📜 main.c            # 외부 인터럽트 및 UART Rx Callback (디커플링)
+   ┗ 📜 ...
